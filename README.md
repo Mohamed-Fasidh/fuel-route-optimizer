@@ -321,7 +321,7 @@ The project can also be run from Bash, Linux, macOS, Git Bash, or WSL.
 ### Clone the repository
 
 ```bash
-git clone <YOUR_GITHUB_REPOSITORY_URL>
+git clone https://github.com/Mohamed-Fasidh/fuel-route-optimizer
 cd fuel_route_optimizer
 ```
 

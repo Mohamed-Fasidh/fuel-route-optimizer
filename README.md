@@ -218,7 +218,7 @@ The current local database contains 6,299 fuel-station records.
 ### 1. Clone
 
 ```bash
-git clone <YOUR_GITHUB_REPOSITORY_URL>
+git clone https://github.com/Mohamed-Fasidh/fuel-route-optimizer
 cd fuel_route_optimizer
 ```
 

@@ -587,32 +587,6 @@ Apply migrations:
 python manage.py migrate
 ```
 
-### Git commands
-
-Check repository status:
-
-```bash
-git status
-```
-
-Add changes:
-
-```bash
-git add README.md
-```
-
-Commit:
-
-```bash
-git commit -m "Update README installation instructions"
-```
-
-Push:
-
-```bash
-git push
-```
-
 ## API Endpoints
 
 ### Health

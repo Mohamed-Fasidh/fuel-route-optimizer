@@ -1,0 +1,12 @@
+services:
+  api:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      DEBUG: "0"
+      SECRET_KEY: "docker-dev-secret"
+      ALLOWED_HOSTS: "localhost,127.0.0.1"
+      NOMINATIM_USER_AGENT: "fuel-route-optimizer/1.0 (assessment)"
+    volumes:
+      - ./db.sqlite3:/app/db.sqlite3

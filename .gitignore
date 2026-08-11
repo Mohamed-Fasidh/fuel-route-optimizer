@@ -1,0 +1,138 @@
+# ============================================================
+# Python
+# ============================================================
+
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyo
+*.pyd
+
+# Python virtual environments
+.venv/
+venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+
+# Python packaging
+build/
+dist/
+develop-eggs/
+downloads/
+eggs/
+.eggs/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+pip-wheel-metadata/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+
+# ============================================================
+# Django
+# ============================================================
+
+*.log
+local_settings.py
+
+# SQLite database
+db.sqlite3
+db.sqlite3-journal
+*.sqlite3-shm
+*.sqlite3-wal
+
+# Django generated files
+staticfiles/
+media/
+
+
+# ============================================================
+# Environment / Secrets
+# ============================================================
+
+.env
+.env.*
+!.env.example
+
+
+# ============================================================
+# IDE / Editors
+# ============================================================
+
+.vscode/
+.idea/
+*.code-workspace
+
+# VS Code local history
+.history/
+
+
+# ============================================================
+# Operating System
+# ============================================================
+
+.DS_Store
+Thumbs.db
+desktop.ini
+
+
+# ============================================================
+# Testing / Coverage
+# ============================================================
+
+.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+.tox/
+.nox/
+coverage.xml
+*.cover
+.cache/
+
+
+# ============================================================
+# Type Checking / Linters
+# ============================================================
+
+.mypy_cache/
+.dmypy.json
+dmypy.json
+.ruff_cache/
+
+
+# ============================================================
+# Jupyter
+# ============================================================
+
+.ipynb_checkpoints/
+
+
+# ============================================================
+# Temporary / Backup Files
+# ============================================================
+
+*.tmp
+*.temp
+*.swp
+*.swo
+*~
+*.bak
+
+
+# ============================================================
+# Build / Tool Caches
+# ============================================================
+
+.pyre/
+.pytype/
+.pyright/
+.pytest_cache/

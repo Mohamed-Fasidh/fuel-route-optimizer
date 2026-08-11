@@ -77,7 +77,7 @@ Django REST API
 
 ## Technology Stack
 
-- Python 3.13
+- Python 3.13.14
 - Django 6.x
 - Django REST Framework
 - SQLite for local development
@@ -213,6 +213,32 @@ The import process:
 
 The current local database contains 6,299 fuel-station records.
 
+## Requirements
+
+- Python 3.13.14
+- Django 6.x
+- pip
+
+### Tested Python Version
+
+This project is developed and tested with:
+
+```text
+Python 3.13.14
+```
+
+Verify your Python version:
+
+```powershell
+python --version
+```
+
+Expected:
+
+```text
+Python 3.13.14
+```
+
 ## Installation
 
 ### 1. Clone
@@ -224,10 +250,17 @@ cd fuel_route_optimizer
 
 ### 2. Create virtual environment
 
-Windows:
+Python 3.13.14 is recommended and is the version used for development and testing.
+
+#### Windows PowerShell
 
 ```powershell
 py -3.13 -m venv .venv
+```
+
+Activate:
+
+```powershell
 .venv\Scripts\Activate.ps1
 ```
 
@@ -238,16 +271,63 @@ Set-ExecutionPolicy -Scope Process -ExecutionPolicy RemoteSigned
 .venv\Scripts\Activate.ps1
 ```
 
+#### Windows troubleshooting
+
+If `py -3.13 -m venv .venv` hangs while Python is running `ensurepip`, create the virtual environment without pip and install pip separately:
+
+```powershell
+Remove-Item -Recurse -Force .venv -ErrorAction SilentlyContinue
+
+py -3.13 -m venv .venv --without-pip
+
+.venv\Scripts\Activate.ps1
+
+python -m ensurepip --upgrade
+python -m pip install --upgrade pip
+```
+
+Then install the project dependencies:
+
+```powershell
+python -m pip install -r requirements.txt
+```
+
+This fallback is only needed when the standard `venv` command hangs during the `ensurepip` step.
+
+#### Bash / Linux / macOS / Git Bash / WSL
+
+```bash
+python3.13 -m venv .venv
+source .venv/bin/activate
+```
+
+If `python3.13` is not available, verify:
+
+```bash
+python3 --version
+```
+
+Then use the installed Python 3.13 executable.
+
 ### 3. Install dependencies
+
+Windows:
 
 ```powershell
 python -m pip install --upgrade pip
-pip install -r requirements.txt
+python -m pip install -r requirements.txt
+```
+
+Bash / Linux / macOS:
+
+```bash
+python -m pip install --upgrade pip
+python -m pip install -r requirements.txt
 ```
 
 ### 4. Migrate
 
-```powershell
+```bash
 python manage.py migrate
 ```
 
@@ -255,7 +335,7 @@ python manage.py migrate
 
 Generate city centroids:
 
-```powershell
+```bash
 python manage.py build_city_centroids
 ```
 
@@ -267,7 +347,7 @@ Wrote 32,131 city centroids to data\city_centroids.csv.
 
 Import fuel prices:
 
-```powershell
+```bash
 python manage.py import_fuel_data
 ```
 
@@ -275,7 +355,7 @@ The importer displays progress and uses bulk insertion for new stations.
 
 For an intentional clean rebuild:
 
-```powershell
+```bash
 python manage.py import_fuel_data --clear
 ```
 
@@ -285,7 +365,7 @@ Do not use `--clear` unless you want to rebuild the local station database.
 
 Run:
 
-```powershell
+```bash
 python manage.py test
 ```
 
@@ -303,7 +383,7 @@ OK
 
 ## Run the API
 
-```powershell
+```bash
 python manage.py runserver
 ```
 
@@ -312,7 +392,6 @@ Server:
 ```text
 http://127.0.0.1:8000/
 ```
-
 
 ## Bash / Linux / macOS Commands
 
@@ -332,13 +411,11 @@ python3.13 -m venv .venv
 source .venv/bin/activate
 ```
 
-If `python3.13` is not available, verify the installed Python version:
+If `python3.13` is not available:
 
 ```bash
 python3 --version
 ```
-
-Then create the environment with the available Python 3.13 executable.
 
 ### Install dependencies
 
@@ -365,7 +442,7 @@ python manage.py build_city_centroids
 python manage.py import_fuel_data
 ```
 
-For a clean rebuild of the local station database:
+For a clean rebuild:
 
 ```bash
 python manage.py import_fuel_data --clear
@@ -456,7 +533,7 @@ curl -s -X POST "http://127.0.0.1:8000/api/v1/route-plan/" \
   }' | jq
 ```
 
-### Check the API response fields
+### Check API summary and performance
 
 ```bash
 curl -s -X POST "http://127.0.0.1:8000/api/v1/route-plan/" \
@@ -527,7 +604,7 @@ git add README.md
 Commit:
 
 ```bash
-git commit -m "Update README with Bash commands"
+git commit -m "Update README installation instructions"
 ```
 
 Push:
@@ -715,7 +792,22 @@ NOMINATIM_USER_AGENT
 MAX_STATION_DISTANCE_MILES
 GEOCODE_CACHE_SECONDS
 ROUTE_CACHE_SECONDS
+FUEL_MPG
+FUEL_RANGE_MILES
+FUEL_TANK_GALLONS
+REDIS_URL
 ```
+
+For the assessment defaults:
+
+```text
+FUEL_MPG=10
+FUEL_RANGE_MILES=500
+FUEL_TANK_GALLONS=50
+MAX_STATION_DISTANCE_MILES=5
+```
+
+`REDIS_URL` is optional. When Redis is not configured, the project can use Django's local-memory cache for local development.
 
 ## Error Handling
 
